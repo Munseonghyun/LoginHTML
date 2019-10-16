@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <title>Javascript register Form Validation</title>
+    <!-- Include CSS File Here -->
+    <link rel="stylesheet" href="css/style.css" />
+    <script language="JavaScript" type="text/javascript" src="js/sha256.js"></script>
+
+    <script type="text/javascript">
+
+      
+        function validate() {
+            let DEBUG = 1;
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            let rePassword = document.getElementById("rePassword").value;
+            
+            if(DEBUG == 1){
+            console.log("id : " + username + " pwd : " + password + " repwd : " + rePassword );
+            } // end of if
+            
+            if (password==rePassword) {
+                alert("Register successfully");
+                let passhash = SHA256(password);
+                //let md5passhash = CryptoJS.MD5(password);
+                //let sha1pass = CryptoJS.SHA1(password);
+                if(DEBUG = 1){
+                    console.log("SHA5 passhash : " + passhash);
+                 //   console.log("SHA1 passhash : " + sha1pass);
+                   
+                }
+                // window.location = "index.html";
+                return false;
+            }
+            else {
+                
+                alert("비밀번호를 확인해주세요");
+                    return false;
+                }
+            }
+
+
+
+        
+        
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <h2>Javascript Register Form Validation</h2>
+            <form id="form_id" method="post" name="myform">
+                <label>User Name :</label>
+                <input type="text" name="username" id="username" />
+                <label>Password :</label>
+                <input type="password" name="password" id="password" />
+                <label>RePassword :</label>
+                <input type="password" name="rePassword" id="rePassword" />
+                <input type="button" value="Register" id="submit" onclick="validate()" />
+                
+                
+            </form>
+            <span>
+                <a href="index.html">login</a>
+                <br/><br/>
+                <b class="note">Note : </b>For this demo use following username and password.
+                <br/>
+                <b class="valid">User Name : Formget
+                    <br/>Password : formget#123</b>
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>

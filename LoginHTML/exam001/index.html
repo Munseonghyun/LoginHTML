@@ -1,0 +1,107 @@
+
+<html>
+
+<head>
+    <title>Javascript Login Form Validation</title>
+    <!-- Include CSS File Here -->
+    <link rel="stylesheet" href="css/style.css" />
+    <script language="JavaScript" type="text/javascript" src="js/md5.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/sha256.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/sha1.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/sha3.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/sha512.js"></script>
+    <script type="text/javascript">
+
+        let attempt = 3; // Variable to count number of attempts.
+        // Below function Executes on click of login button.
+        function validate() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            
+
+            let passhash = SHA256(password);
+            let md51 = CryptoJS.MD5(password);
+            let sha11 = CryptoJS.SHA1(password);
+            let sha5122 = CryptoJS.SHA512(password);
+            let sha33 = CryptoJS.SHA3(password);
+                if(DEBUG = 1){
+                    console.log("SHA5 passhash : " + passhash);
+                    console.log("SHA3 passhash : " + sha33);
+                    console.log("SHA1 passhash : " + sha11);
+                    console.log("SHA512 passhash : " + sha5122);
+                    console.log("MD5 passhash : " + md51);
+                }
+
+            console.log("id : " + username + " pwd : " + password);
+        
+            if (username == "soto" && passhash == SHA256("soto")) {
+           
+                
+              
+                alert("Login successfully");
+                window.location = "success.html"; // Redirecting to other page.
+                return false;
+            }
+            else {
+                attempt--;// Decrementing by one.
+                alert("You have left " + attempt + " attempt;");
+                // Disabling fields after 3 attempts.
+                if (attempt == 0) {
+                    document.getElementById("username").disabled = true;
+                    document.getElementById("password").disabled = true;
+                    document.getElementById("submit").disabled = true;
+                    return false;
+                }
+            }
+            
+        }
+        function cursormove()
+            {
+                if(window.event.keyCode==13){
+                    document.getElementById("password").focus();
+                    
+                }
+
+            }
+            
+        function enterkey()
+            {
+                if(window.event.keyCode==13){
+                    validate();
+                }
+            }
+
+            
+      
+        
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <h2>Javascript Login Form Validation</h2>
+            <form id="form_id" method="post" name="myform">
+                <label>User Name :</label>
+                <input type="text" name="username" id="username" onkeyup="cursormove()" />
+                <label>Password :</label>
+                <input type="password" name="password" id="password" onkeydown="enterkey()" />
+                <input type="button" value="Login" id="submit" onclick="validate()" />
+                
+                
+                
+            </form>
+            <span>
+                <a href="register.html">Register</a>
+                <br/><br/>
+                <b class="note">Note : </b>For this demo use following username and password.
+                <br/>
+                <b class="valid">User Name : Formget
+                    <br/>Password : formget#123</b>
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>
